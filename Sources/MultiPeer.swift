@@ -186,6 +186,11 @@ public class MultiPeer: NSObject {
         }
     }
 
+    public func send(data: Data, type: UInt32, to peerId: MCPeerID) throws {
+        let container: [Any] = [data, type]
+        let item = NSKeyedArchiver.archivedData(withRootObject: container)
+        try session.send(item, toPeers: [peerId], with: MCSessionSendDataMode.reliable)
+    }
 }
 
 // MARK: - Advertiser Delegate
