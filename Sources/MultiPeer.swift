@@ -272,7 +272,7 @@ extension MultiPeer: MCSessionDelegate {
         guard let type = container[1] as? UInt32 else { return }
 
         OperationQueue.main.addOperation {
-            self.delegate?.multiPeer(didReceiveData: item, ofType: type, from: self.connectedPeers.first(where: { $0.peerID == peerID }) ?? Peer(peerID: peerID, state: .connected))
+            self.delegate?.multiPeer(didReceiveData: item, ofType: type, from: peerID)
         }
 
     }
